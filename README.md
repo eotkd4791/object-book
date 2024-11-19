@@ -1,5 +1,8 @@
 # Study Title
 
+![image](https://github.com/user-attachments/assets/b9fd40f3-bd7a-442d-94e1-8db43daa5c5f)
+
+
 # 스터디 기간
 
 - 시작 : 2024-11-25 ~ 2025-01-23
