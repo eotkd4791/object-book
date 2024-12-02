@@ -1,3 +1,68 @@
+## Abstract class와 interface
+
+예시에서 할인 정책과 할인 조건을 abstract class와 interface로 구현했다. 
+- DiscountPolicy → abstract class
+- DiscountCondition → interface
+
+
+### **DiscountPolicy에서 abstract 클래스를 사용한 이유**
+
+- 공통 필드와 메서드 제공
+    - `List<DiscountCondition> conditions;`
+    - `public Money calculateDiscountAmount(Screening screening)`
+- 인터페이스는 상태를 정의할수 없으므로 필드 재사용이 어렵다.
+- 공통적으로 제공하지만 일부 구현은 하위클래스에 위임해야하는 경우 abstract 메서드를 정의한다. `getDiscountAmount`
+
+```java
+public abstract class DiscountPolicy {
+
+    private final List<DiscountCondition> conditions; 
+
+    public DiscountPolicy() {
+        this.conditions = new ArrayList<>();
+    }
+
+    public Money calculateDiscountAmount(Screening screening) {
+        for (DiscountCondition condition : conditions) {
+            if (condition.isSatisfiedBy(screening)) {
+                return getDiscountAmount(screening);
+            }
+        }
+        return Money.ZERO;
+    }
+
+    abstract protected Money getDiscountAmount(Screening screening); // 하위클래스가 구현
+}
+```
+
+### 왜 인터페이스가 아닌가?
+
+- 인터페이스도 확장성을 제공하지만 DiscountPolicy의 경우
+- 공통 상태를 재사용하고 중복을 방지한다
+    - 인터페이스는 상태를 가질 수 없으므로, 하위 클래스에서 매번 필드를 정의해야한다.
+- 구체 메서드의 필요
+    - 상태를 참조하는 구체적인 구현 메서드를 하위클래스들이 공유하려면 abstract 클래스를 사용하는 것이 더 적합하다
+    - DiscountPolicy는 하위 클래스에서 공통적인 로직(`calculateDiscountAmount`)을 재사용하고, 특정 로직만 다르게 구현(`getDiscountAmount`)하도록 강제하고 있다.
+    - 인터페이스로는 추상화는 가능하지만, 구체적인 코드 재사용은 어렵다.
+- 다중상속이 필요하지 않다
+    - 현재 할인 정책 설계에서는 다중상속이 불필요함
+- 즉 DiscountPolicy를 abstract 클래스로 설계한 이유는 공통 기능을 강제하면서도 코드 재사용을 극대화하기 위해서 abstract class로 구현했다.
+
+```java
+public interface DiscountCondition {
+
+    /**
+     * 할인이 가능한 상영 여부를 체크한다.
+     * @param screening 상영정보
+     * @return 할인 가능하면 true를 반환함
+     */
+    boolean isSatisfiedBy(Screening screening);
+}
+```
+
+
+
+-------
 
 
 
