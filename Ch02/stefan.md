@@ -23,11 +23,12 @@
 
 ```java
 // as-is
-int money = 0;
+BigDecimal money = 0;
 
 // to-be
 public class Money {
   private BigDecimal amount;
+
   Money(BigDecimal amount) {
     this.amount = amount;
   }
