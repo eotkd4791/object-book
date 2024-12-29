@@ -1,4 +1,4 @@
-public class CardPayment implements PaymentStrategy {
+public class CardPaymentStrategy implements PaymentStrategy {
     @Override
     public void pay(int amount) {
         // 카드 결제 로직 (카드 정보 검증, 승인 요청 등)
