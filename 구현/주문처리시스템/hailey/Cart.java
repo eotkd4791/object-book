@@ -16,6 +16,10 @@ public class Cart {
         items.remove(product);
     }
 
+    public boolean isEmpty() {
+        return products.isEmpty();
+    }
+
     public int getTotalPrice() {
         int totalPrice = 0;
         for (Product product : items) {
