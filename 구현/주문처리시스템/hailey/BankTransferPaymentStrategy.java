@@ -7,6 +7,6 @@ public class BankTransferPaymentStrategy implements PaymentStrategy {
 
     @Override
     public PaymentMethod getPaymentMethod() {
-        return PaymentMethod.Bank_Transfer;
+        return PaymentMethod.BANK_TRANSFER;
     }
 }
