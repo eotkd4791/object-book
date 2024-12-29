@@ -7,6 +7,6 @@ public class CardPaymentStrategy implements PaymentStrategy {
 
     @Override
     public PaymentMethod getPaymentMethod() {
-        return PaymentMethod.CardPayment;
+        return PaymentMethod.CARD;
     }
 }
