@@ -1,5 +1,5 @@
 public class Order {
-    private ShoppingCart shoppingCart;
+    private Card cart;
     private PaymentStrategy paymentStrategy;
 
     public void setPaymentMethod(PaymentMethod paymentMethod) {
@@ -15,7 +15,7 @@ public class Order {
     }
   
     public void placeOrder() {
-        if (shoppingCart.isEmpty()) {
+        if (cart.isEmpty()) {
             throw new EmptyShoppingCartException("장바구니가 비어있습니다.");
         }
 
