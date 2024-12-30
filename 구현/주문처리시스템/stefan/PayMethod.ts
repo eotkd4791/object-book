@@ -1,3 +1,3 @@
 export interface PayMethod {
-  pay(amount: number): void;
+  pay(amount: number, serial: string): void;
 }

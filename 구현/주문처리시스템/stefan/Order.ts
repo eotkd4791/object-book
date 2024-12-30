@@ -1,8 +1,5 @@
-import { AccountPayMethod } from "./AccountPayMethod";
-import { CardPayMethod } from "./CardPayMethod";
 import { Cart } from "./Cart";
-import { MobilePayMethod } from "./MobilePayMethod";
-import { PayMethod } from "./PayMethod";
+import { PayMethodFactory } from "./PayMethodFactory";
 import { PayType } from "./PayType";
 
 // 주문
@@ -12,20 +9,14 @@ export class Order {
   public execute() {
     if (this.cart.isEmpty()) return;
 
+    const payMethod = PayMethodFactory.create(PayType.CARD);
     const totalPrice = this.cart.getTotalPrice();
-    const payMethod = this.getPayMethod(PayType.CARD); // 사용자가 선택한 결제 수단에 따른 PayMethod를 인자로 넘김
+    const serialNumber = this.getSerialNumber();
 
-    payMethod.pay(totalPrice);
+    payMethod.pay(totalPrice, serialNumber);
   }
 
-  private getPayMethod(payType: PayType): PayMethod {
-    switch (payType) {
-      case PayType.CARD:
-        return new CardPayMethod();
-      case PayType.ACCOUNT:
-        return new AccountPayMethod();
-      case PayType.MOBILE:
-        return new MobilePayMethod();
-    }
+  private getSerialNumber() {
+    return "사용자가_입력한_시리얼_넘버";
   }
 }
