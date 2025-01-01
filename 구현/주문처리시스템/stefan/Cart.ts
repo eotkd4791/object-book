@@ -9,10 +9,11 @@ export class Cart {
     return this.items.isEmpty();
   }
   public add(product: Product) {
-    if (product.getQuantity() > 0) {
+    if (product.hasStock()) {
       this.items.add(product);
+    } else {
+      throw new Error("수량이 부족합니다.");
     }
-    throw new Error("수량이 부족합니다.");
   }
   public remove(product: Product) {
     this.items.remove(product);

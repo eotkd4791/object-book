@@ -19,4 +19,7 @@ export class Product {
   public getQuantity() {
     return this.quantity;
   }
+  public hasStock() {
+    return this.quantity > 0;
+  }
 }
