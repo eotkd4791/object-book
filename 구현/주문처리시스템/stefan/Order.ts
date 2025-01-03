@@ -9,7 +9,10 @@ export class Order {
   public execute() {
     if (this.cart.isEmpty()) return;
 
-    const payMethod = PayMethodFactory.create(PayType.CARD);
+    const payMethod = PayMethodFactory.create(
+      PayType.CARD,
+      "1234-2345-3456-4567"
+    );
     const totalPrice = this.cart.getTotalPrice();
     const serialNumber = this.getSerialNumber();
 

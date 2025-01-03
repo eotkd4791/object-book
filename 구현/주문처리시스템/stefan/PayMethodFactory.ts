@@ -6,14 +6,14 @@ import { PayType } from "./PayType";
 
 // 생성 로직을 분리하기 위한 팩토리
 export class PayMethodFactory {
-  static create(payType: PayType): PayMethod {
+  static create(payType: PayType, serialNumber: string): PayMethod {
     switch (payType) {
       case PayType.ACCOUNT:
-        return new AccountPayMethod();
+        return new AccountPayMethod(serialNumber);
       case PayType.CARD:
-        return new CardPayMethod();
+        return new CardPayMethod(serialNumber);
       case PayType.MOBILE:
-        return new MobilePayMethod();
+        return new MobilePayMethod(serialNumber);
     }
   }
 }
