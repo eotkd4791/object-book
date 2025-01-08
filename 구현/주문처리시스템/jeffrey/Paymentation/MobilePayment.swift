@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct MobilePayment: Paymentable {
+public struct MobilePayment: Payable {
     public enum Telecommunication {
         case skt
         case kt

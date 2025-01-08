@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct AccountTransferPayment: Paymentable {
+public struct AccountTransferPayment: Payable {
     public enum Bank {
         case kb
         case ibk

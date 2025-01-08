@@ -1,5 +1,5 @@
 //
-//  Paymentable.swift
+//  Payable.swift
 //  ShoppingMall
 //
 //  Created by Mephrine on 1/8/25.
@@ -8,8 +8,8 @@
 import Foundation
 
 // MARK: - 결제 모듈
-public typealias TransactionOperable = Paymentable & Refundable
+public typealias TransactionOperable = Payable & Refundable
 
-public protocol Paymentable {
+public protocol Payable {
     func processPayment(amount: Decimal) async throws
 }

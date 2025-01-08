@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct CardPayment: Paymentable {
+public struct CardPayment: Payable {
     public enum CardType {
         case visa
         case masterCard
