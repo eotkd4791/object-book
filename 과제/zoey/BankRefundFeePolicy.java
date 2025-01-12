@@ -12,7 +12,9 @@ public class BankRefundFeePolicy extends RefundFeePolicy {
     }
 
     @Override
-    protected BigDecimal calculateFee(Order order) {
-        return chargeFee ? transferFee : BigDecimal.ZERO;
+    protected void calculateFee(Order order) {
+        BigDecimal fee = chargeFee ? transferFee : BigDecimal.ZERO;
+        order.updateRefundAmount(order.getRefundAmount().subtract(fee));
+        System.out.println("refund information -> refundAmount : " + order.getRefundAmount() + ", refundFee : " + fee);
     }
 }

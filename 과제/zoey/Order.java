@@ -63,6 +63,10 @@ public class Order {
         return paymentAmount;
     }
 
+    public void updatePaymentAmount(BigDecimal amount) {
+        this.paymentAmount = amount;
+    }
+
     public void setRefundPolicy(RefundPolicy refundPolicy) {
         if (refundPolicy == null) {
             throw new IllegalArgumentException("refundPolicy cannot be null");
@@ -71,7 +75,7 @@ public class Order {
     }
 
     public void refund() {
-        this.refundAmount = paymentAmount;
+        this.refundAmount = totalAmount;
         refundPolicy.refund(this);
     }
 
@@ -79,15 +83,15 @@ public class Order {
         return refundAmount;
     }
 
-    public void updateRefundAmount(BigDecimal fee) {
-        refundAmount = refundAmount.subtract(fee);
+    public void updateRefundAmount(BigDecimal amount) {
+        refundAmount = amount;
     }
 
     @Override
     public String toString() {
         return "\n" +" * 주문내역 => " +
                 "상태 : [" + status + "]" +
-                ", 장바구니 총금액=" + totalAmount +
+                ", 총금액=" + totalAmount +
                 ", 결제금액=" + paymentAmount +
                 ", 환불금액=" + refundAmount;
     }

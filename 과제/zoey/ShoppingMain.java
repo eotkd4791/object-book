@@ -16,7 +16,11 @@ public class ShoppingMain {
         Order order = new Order(customer, customer.getShoppingCart());
         System.out.println("order : " + order);
 
-        order.setPaymentPolicy(new BankPaymentPolicy("WOORI", "1003955774930"));
+        order.setPaymentPolicy(
+                new ShippingFeePolicy(
+                    new BankPaymentPolicy("WOORI", "1003955774930"),
+                            ShippingType.EXPRESS)
+        );
         order.pay();
 
         // 3. 환불
