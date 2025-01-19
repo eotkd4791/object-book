@@ -1,4 +1,4 @@
-package com.example.order;
+package com.example.shopping;
 
 import java.util.HashMap;
 import java.util.Map;

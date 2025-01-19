@@ -1,4 +1,4 @@
-package com.example.order;
+package com.example.shopping;
 
 import java.math.BigDecimal;
 
@@ -21,7 +21,7 @@ public class Product {
     }
 
     public void validateStockAvailability() {
-        if (stock.isQuantityAvailable()) {
+        if (!stock.isQuantityAvailable()) {
             throw new IllegalStateException("out of stock");
         }
     }
